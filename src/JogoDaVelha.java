@@ -96,6 +96,66 @@ public class JogoDaVelha {
 		
 	}
 	
+	public boolean verificaVencedor() {
+		
+		boolean haVencedor = false;
+		
+		for(int i = 0; i < tabuleiro.length; i++) {
+			
+			if(tabuleiro[i][0] != Jogada.EMPTY) {
+				
+				//verifica horizontal
+				
+				int cont = 0;
+				
+				for(int k = 0; k < tabuleiro.length; k++) {
+					
+					if(tabuleiro[i][k] == tabuleiro[i][0]) {
+						
+						cont++;
+						
+					}
+					
+				}
+				
+				if(cont == tabuleiro.length - 1) {
+					return true;
+				}
+				
+				cont = 0;
+				
+				
+				
+			}
+			
+		}
+		
+		return haVencedor;
+		
+	}
+	
+	public void iniciaPartida() {
+		
+		exibeTabuleiro();
+		
+		for(int jogada = 1; jogada <= getTabuleiro().length * getTabuleiro()[0].length; jogada++) {
+			
+			posicionaJogada(jogada);
+			
+			exibeTabuleiro();
+			
+			if(verificaVencedor() == true) {
+				
+				System.out.println("\nHá vencedor.");
+				
+				exibeTabuleiro();
+				
+			}
+			
+		}
+		
+	}
+	
 	
 	
 	
