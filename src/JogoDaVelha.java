@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class JogoDaVelha {
 	
@@ -26,7 +27,9 @@ public class JogoDaVelha {
 	
 	public void exibeTabuleiro() {
 		
-		for(int i = 0; i < tabuleiro.length; i++) {
+		for(int i = tabuleiro.length - 1; i >= 0; i--) {
+			
+			System.out.printf("%d", i);
 			
 			for(int j = 0; j < tabuleiro[0].length; j++) {
 				
@@ -53,11 +56,46 @@ public class JogoDaVelha {
 				
 			}
 			
+			
+			
 			System.out.println();
 			
 		}
 		
+		System.out.printf(" ");
+		
+		for(int i = 0; i < tabuleiro[0].length; i++) {
+			
+			System.out.printf("%d ", i);
+			
+		}
+		
 	}
+	
+	
+	
+	public void posicionaJogada(int jogada) {
+		
+		Scanner input = new Scanner(System.in);
+		int x = 0, y = 0;
+		
+		do{
+			
+			System.out.println("\nInsira a sua jogada.");
+			
+			x = input.nextInt();
+			y = input.nextInt();
+			
+		}while(x < 0 || x >= tabuleiro.length || y < 0 || y >= tabuleiro.length || tabuleiro[y][x] == Jogada.O || tabuleiro[y][x] == Jogada.X);
+		
+		if(jogada % 2 == 0) {
+			tabuleiro[y][x] = Jogada.O;
+		}else {
+			tabuleiro[y][x] = Jogada.X;
+		}
+		
+	}
+	
 	
 	
 	
