@@ -27,17 +27,17 @@ public class JogoDaVelha {
 	
 	public void exibeTabuleiro() {
 		
-		for(int i = tabuleiro.length - 1; i >= 0; i--) {
+		for(int i = getTabuleiro().length - 1; i >= 0; i--) {
 			
 			System.out.printf("%d", i);
 			
-			for(int j = 0; j < tabuleiro[0].length; j++) {
+			for(int j = 0; j < getTabuleiro()[0].length; j++) {
 				
-				if(tabuleiro[i][j] == Jogada.EMPTY) {
+				if(getTabuleiro()[i][j] == Jogada.EMPTY) {
 					
 					System.out.printf(" ");
 					
-				}else if(tabuleiro[i][j] == Jogada.O) {
+				}else if(getTabuleiro()[i][j] == Jogada.O) {
 					
 					System.out.printf("O");
 					
@@ -64,7 +64,7 @@ public class JogoDaVelha {
 		
 		System.out.printf(" ");
 		
-		for(int i = 0; i < tabuleiro[0].length; i++) {
+		for(int i = 0; i < getTabuleiro()[0].length; i++) {
 			
 			System.out.printf("%d ", i);
 			
@@ -86,31 +86,30 @@ public class JogoDaVelha {
 			x = input.nextInt();
 			y = input.nextInt();
 			
-		}while(x < 0 || x >= tabuleiro.length || y < 0 || y >= tabuleiro.length || tabuleiro[y][x] == Jogada.O || tabuleiro[y][x] == Jogada.X);
+		}while(x < 0 || x >= getTabuleiro().length || y < 0 || y >= getTabuleiro().length || getTabuleiro()[y][x] == Jogada.O || getTabuleiro()[y][x] == Jogada.X);
 		
 		if(jogada % 2 == 0) {
-			tabuleiro[y][x] = Jogada.O;
+			getTabuleiro()[y][x] = Jogada.O;
 		}else {
-			tabuleiro[y][x] = Jogada.X;
+			getTabuleiro()[y][x] = Jogada.X;
 		}
 		
 	}
 	
 	public boolean verificaVencedor() {
 		
-		boolean haVencedor = false;
 		
-		for(int i = 0; i < tabuleiro.length; i++) {
+		for(int i = 0; i < getTabuleiro().length; i++) {
 			
-			if(tabuleiro[i][0] != Jogada.EMPTY) {
+			if(getTabuleiro()[i][0] != Jogada.EMPTY) {
 				
 				//verifica horizontal
 				
 				int cont = 0;
 				
-				for(int k = 0; k < tabuleiro.length; k++) {
+				for(int k = 0; k < getTabuleiro().length; k++) {
 					
-					if(tabuleiro[i][k] == tabuleiro[i][0]) {
+					if(getTabuleiro()[i][k] == getTabuleiro()[i][0]) {
 						
 						cont++;
 						
@@ -118,7 +117,7 @@ public class JogoDaVelha {
 					
 				}
 				
-				if(cont == tabuleiro.length) {
+				if(cont == getTabuleiro().length) {
 					return true;
 				}
 				
@@ -127,17 +126,17 @@ public class JogoDaVelha {
 			
 		}
 		
-		for(int i = 0; i < tabuleiro[0].length; i++) {
+		for(int i = 0; i < getTabuleiro()[0].length; i++) {
 			
-			if(tabuleiro[0][i] != Jogada.EMPTY) {
+			if(getTabuleiro()[0][i] != Jogada.EMPTY) {
 				
 				//verifica vertical
 				
 				int cont = 0;
 				
-				for(int j = 0; j < tabuleiro[0].length; j++) {
+				for(int j = 0; j < getTabuleiro()[0].length; j++) {
 					
-					if(tabuleiro[0][i] == tabuleiro[j][i]) {
+					if(getTabuleiro()[0][i] == getTabuleiro()[j][i]) {
 						
 						cont ++;
 						
@@ -145,7 +144,7 @@ public class JogoDaVelha {
 					
 				}
 				
-				if(cont == tabuleiro[0].length) {
+				if(cont == getTabuleiro()[0].length) {
 					
 					return true;
 					
@@ -156,7 +155,51 @@ public class JogoDaVelha {
 			
 		}
 		
-		return haVencedor;
+		if(getTabuleiro()[0][0] != Jogada.EMPTY) {
+			
+			int cont = 0;
+			
+			for(int i = 0; i < getTabuleiro().length; i++) {
+				
+				if(getTabuleiro()[0][0] == getTabuleiro()[i][i]) {
+					
+					cont++;
+					
+				}
+				
+			}
+			
+			if(cont == getTabuleiro().length) {
+				
+				return true;
+				
+			}
+			
+		}
+		
+		if(getTabuleiro()[2][0] != Jogada.EMPTY) {
+			
+			int cont = 0;
+			
+			for(int i = getTabuleiro().length - 1, j = 0; j < getTabuleiro().length; i--, j++) {
+				
+				if(getTabuleiro()[2][0] == getTabuleiro()[i][j]) {
+					
+					cont++;
+					
+				}
+				
+			}
+			
+			if(cont == getTabuleiro().length) {
+				
+				return true;
+				
+			}
+			
+		}
+		
+		return false;
 		
 	}
 	
