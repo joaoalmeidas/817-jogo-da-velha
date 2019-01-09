@@ -124,10 +124,32 @@ public class JogoDaVelha {
 				
 			}
 			
+			
+		}
+		
+		for(int i = 0; i < tabuleiro[0].length; i++) {
+			
 			if(tabuleiro[0][i] != Jogada.EMPTY) {
 				
 				//verifica vertical
 				
+				int cont = 0;
+				
+				for(int j = 0; j < tabuleiro[0].length; j++) {
+					
+					if(tabuleiro[0][i] == tabuleiro[j][i]) {
+						
+						cont ++;
+						
+					}
+					
+				}
+				
+				if(cont == tabuleiro[0].length) {
+					
+					return true;
+					
+				}
 				
 				
 			}
