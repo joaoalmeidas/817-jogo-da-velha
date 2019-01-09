@@ -27,9 +27,11 @@ public class JogoDaVelha {
 	
 	public void exibeTabuleiro() {
 		
+		System.out.println();
+		
 		for(int i = getTabuleiro().length - 1; i >= 0; i--) {
 			
-			System.out.printf("%d", i);
+			System.out.printf("%d ", i);
 			
 			for(int j = 0; j < getTabuleiro()[0].length; j++) {
 				
@@ -62,7 +64,7 @@ public class JogoDaVelha {
 			
 		}
 		
-		System.out.printf(" ");
+		System.out.printf("\n  ");
 		
 		for(int i = 0; i < getTabuleiro()[0].length; i++) {
 			
@@ -83,7 +85,10 @@ public class JogoDaVelha {
 			
 			System.out.println("\nInsira a sua jogada.");
 			
+			System.out.printf("Insira a coluna:");
 			x = input.nextInt();
+			
+			System.out.printf("Insira a linha:");
 			y = input.nextInt();
 			
 		}while(x < 0 || x >= getTabuleiro().length || y < 0 || y >= getTabuleiro().length || getTabuleiro()[y][x] == Jogada.O || getTabuleiro()[y][x] == Jogada.X);
