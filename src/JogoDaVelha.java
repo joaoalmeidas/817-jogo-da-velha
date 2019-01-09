@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class JogoDaVelha {
 	
-	private Jogada[][] tabuleiro = new Jogada[3][3];
+	private Jogada[][] tabuleiro = new Jogada[4][4];
 
 	public JogoDaVelha() {
 		super();
