@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class JogoDaVelha {
@@ -76,20 +77,55 @@ public class JogoDaVelha {
 	
 	
 	
-	public void posicionaJogada(int jogada) {
+	public void posicionaJogada(int jogada, boolean primeiro) {
 		
 		Scanner input = new Scanner(System.in);
+		Random random = new Random();
 		int x = 0, y = 0;
 		
 		do{
+			if(primeiro == true) {
+				
+				if(jogada%2 != 0) {
+					
+					System.out.println("\nInsira a sua jogada.");
+					
+					System.out.printf("Insira a coluna:");
+					x = input.nextInt();
+					
+					System.out.printf("Insira a linha:");
+					y = input.nextInt();
+					
+				}else {
+					
+					x = random.nextInt(getTabuleiro().length);
+					y = random.nextInt(getTabuleiro().length);
+					
+				}
+				
+			}else {
+				
+				if(jogada%2 == 0) {
+					
+					System.out.println("\nInsira a sua jogada.");
+					
+					System.out.printf("Insira a coluna:");
+					x = input.nextInt();
+					
+					System.out.printf("Insira a linha:");
+					y = input.nextInt();
+					
+				}else {
+					
+					x = random.nextInt(getTabuleiro().length);
+					y = random.nextInt(getTabuleiro().length);
+					
+				}
+				
+			}
 			
-			System.out.println("\nInsira a sua jogada.");
 			
-			System.out.printf("Insira a coluna:");
-			x = input.nextInt();
 			
-			System.out.printf("Insira a linha:");
-			y = input.nextInt();
 			
 		}while(x < 0 || x >= getTabuleiro().length || y < 0 || y >= getTabuleiro().length || getTabuleiro()[y][x] == Jogada.O || getTabuleiro()[y][x] == Jogada.X);
 		
@@ -210,17 +246,46 @@ public class JogoDaVelha {
 	
 	public void iniciaPartida() {
 		
+		String resposta;
+		boolean primeiro;
+		
 		exibeTabuleiro();
+		
+		System.out.println("\n\nDeseja ser o primeiro? sim ou não");
+		
+		Scanner input = new Scanner(System.in);
+		
+		resposta = input.nextLine();
+		
+		if(resposta.equals("sim")) {
+			
+			primeiro = true;
+			
+		}else {
+			
+			primeiro = false;
+			
+		}
 		
 		for(int jogada = 1; jogada <= getTabuleiro().length * getTabuleiro()[0].length && verificaVencedor() == false; jogada++) {
 			
-			posicionaJogada(jogada);
+			posicionaJogada(jogada, primeiro);
 			
 			exibeTabuleiro();
 			
 			if(verificaVencedor() == true) {
 				
-				System.out.println("\nHá vencedor.");
+				System.out.println("\nTEMOS UM VENCEDOR.");
+				
+				if(primeiro == true && jogada%2 != 0 || primeiro == false && jogada%2 == 0 && verificaVencedor() == true) {
+					
+					System.out.println("PARABÉNS, VOCÊ VENCEU!");
+					
+				}else {
+					
+					System.out.println("O COMPUTADOR FOI O VENCEDOR!");
+					
+				}
 				
 				exibeTabuleiro();
 				
@@ -228,7 +293,15 @@ public class JogoDaVelha {
 			
 		}
 		
+		if(verificaVencedor() == false) {
+			
+			System.out.println("\nHOUVE UM EMPATE.");
+			
+		}
+		
 	}
+	
+	
 	
 	
 	
