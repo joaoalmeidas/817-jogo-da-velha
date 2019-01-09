@@ -118,11 +118,15 @@ public class JogoDaVelha {
 					
 				}
 				
-				if(cont == tabuleiro.length - 1) {
+				if(cont == tabuleiro.length) {
 					return true;
 				}
 				
-				cont = 0;
+			}
+			
+			if(tabuleiro[0][i] != Jogada.EMPTY) {
+				
+				//verifica vertical
 				
 				
 				
@@ -138,7 +142,7 @@ public class JogoDaVelha {
 		
 		exibeTabuleiro();
 		
-		for(int jogada = 1; jogada <= getTabuleiro().length * getTabuleiro()[0].length; jogada++) {
+		for(int jogada = 1; jogada <= getTabuleiro().length * getTabuleiro()[0].length && verificaVencedor() == false; jogada++) {
 			
 			posicionaJogada(jogada);
 			
